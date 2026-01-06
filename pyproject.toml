@@ -1,0 +1,7 @@
+[project]
+    name = "your-package"
+    version = "0.1.0"
+    dependencies = [
+        "sphinx", "sphinx_rtd_theme"# Or a specific version, e.g., "sphinx>=7.0,<9"
+        # other runtime dependencies
+    ]

@@ -1,0 +1,145 @@
+.. _examples-examples:
+
+Examples
+=====================
+This section provides practical examples of how to 
+use the **ChenFliessSeries.jl** package for various computations related to Chen-Fliess series.
+
+2D Planar Quadrotor
+-----------------
+
+.. code-block:: julia
+   :linenos:
+
+    # Libraries
+    using Symbolics
+    using LinearAlgebra
+    using ChenFliessSeries
+
+    # ---------------------------------------------------------
+    # 1. Lie derivatives
+    # ---------------------------------------------------------
+
+    # Symbolic variable representing the state of the system
+    @variables x[1:6]
+    x_vec = x
+
+    # Truncation length of words
+    Ntrunc = 4
+
+    # Output of the system
+    h = x[1] 
+
+    # Parameters of the nonlinear control-affine system 
+    gg     = 9.81   # Gravitational acceleration (m/s^2)
+    m     = 0.18    # Mass (kg)
+    Ixx   = 0.00025 # Mass moment of inertia (kg*m^2)
+    L     = 0.086   # Arm length (m)
+
+    # Vector fields
+    g = hcat(
+        [x[4], x[5], x[6], 0, -gg, 0],
+        [0, 0, 0, 1/m*sin(x[3]), 1/m*cos(x[3]), -L/Ixx],
+        [0, 0, 0, 1/m*sin(x[3]), 1/m*cos(x[3]), L/Ixx]
+    )
+
+    # Initial value
+    x_val = [0.0, 0.0, 0.1, 0.0, 0.0, 0.0] 
+
+    # initial evaluator
+    f_L = build_lie_evaluator(h, g, x_vec, Ntrunc)
+
+    # Lie derivatives or coefficients of the Chen-Fliess series
+    L_eval = f_L(x_val)   
+
+    # ---------------------------------------------------------
+    # 2. Iterated integrals
+    # ---------------------------------------------------------
+
+    # Time step
+    dt = 0.001  
+
+    # Time interval
+    t = 0:dt:0.1  
+
+    # Inputs
+    u0 = one.(t)
+    u1 = sin.(t)   
+    u2 = cos.(t)
+
+    # Stack of the inputs
+    utemp = vcat(u0', u1', u2')   
+
+    # Iterated integrals
+    E = iter_int(utemp, dt, Ntrunc)   
+
+    # ---------------------------------------------------------
+    # 3. Chen–Fliess series
+    # ---------------------------------------------------------
+
+    y_cf = x_val[1] .+ vec(L_eval' * E)   # output h = x1
+
+
+We can compare this result with a numerical ODE solver
+
+
+.. code-block:: julia
+   :linenos:
+
+    # Libraries
+    using DifferentialEquations
+    using Plots
+
+    # ---------------------------------------------------------
+    # 4. ODE solution using DifferentialEquations.jl
+    # ---------------------------------------------------------
+
+    function twodquad!(dx, x, p, t)
+        # Inputs
+        u1 = sin(t)          
+        u2 = cos(t)
+
+        # Numeric dynamics
+        dx[1] = x[4]
+        dx[2] = x[5]
+        dx[3] = x[6]
+        dx[4] = 1/m*sin(x[3])*(u1+u2)
+        dx[5] = -gg + (1/m*cos(x[3]))*(u1+u2)
+        dx[6] = (L/Ixx)*(u2-u1)
+    end
+
+    x0 = x_val
+    tspan = (0.0, 0.1)
+
+    prob = ODEProblem(twodquad!, x0, tspan)
+    sol = solve(prob, Tsit5(), saveat = t)
+
+    x1_ode = sol[1, :]   # extract x1(t), since h = x1
+
+
+    # ---------------------------------------------------------
+    # 4. Plot both curves
+    # ---------------------------------------------------------
+    plot(t, x1_ode,
+        label="ODE solution x₁(t)",
+        linewidth=3,
+        color=:blue)
+
+    plot!(t, y_cf,
+        label="Chen–Fliess (Ntrunc = 3)",
+        linewidth=3,
+        linestyle=:dash,
+        color=:red)
+
+    xlabel!("Time")
+    ylabel!("Value")
+    title!("ODE vs Chen–Fliess Approximation")
+    plot!(grid = true)
+
+
+
+.. image:: https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png
+   :alt: iter_int(), iter_lie(), Ivan Perez Avellaneda
+   :align: center
+   :width: 600px
+   :height: 300px
