@@ -1,2 +1,2 @@
-# CFSpy_docs
-Readthedocs project of the CFSpy package.
+# ChenFLiessSeries.jl
+Readthedocs project of the ChenFLiessSeries.jl package.
