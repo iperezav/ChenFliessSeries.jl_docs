@@ -7,8 +7,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Examples &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52b2ce3b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,18 +18,20 @@
       <script src="_static/documentation_options.js?v=8d563738"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/theme_switcher.js?v=05e9b7a9"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="Getting-started" href="getting-started.html" /> 
+    <link rel="prev" title="Getting Started" href="getting-started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #0d6efd" >
 
           
           
@@ -43,26 +47,75 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting-started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#d-planar-quadrotor">2D Planar Quadrotor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-examples">More examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assembling-the-truncated-chen-fliess-series">Assembling the truncated Chen-Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulating-the-true-2d-planar-quadrotor-dynamics">Simulating the true 2D planar quadrotor dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-plot">Comparison plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#guidelines">Guidelines</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0d6efd" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ChenFliessSeries.jl</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -78,133 +131,306 @@
              
   <section id="examples">
 <span id="examples-examples"></span><h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
-<p>This section provides practical examples of how to
-use the <strong>ChenFliessSeries.jl</strong> package for various computations related to Chen-Fliess series.</p>
+<p>This section provides practical demonstrations of how to use
+<strong>ChenFliessSeries.jl</strong> for computing iterated integrals, Lie derivatives,
+and truncated Chen–Fliess series for nonlinear control‑affine systems.</p>
+<p>Each example illustrates a complete workflow:</p>
+<ol class="arabic simple">
+<li><p>Define vector fields and outputs</p></li>
+<li><p>Compute Lie derivatives</p></li>
+<li><p>Compute iterated integrals</p></li>
+<li><p>Assemble the truncated Chen–Fliess series</p></li>
+<li><p>Compare with a numerical ODE solution</p></li>
+</ol>
+<p>Two representative systems are shown below:
+a 2D planar quadrotor and a nonlinear pendulum.</p>
 <section id="d-planar-quadrotor">
 <h2>2D Planar Quadrotor<a class="headerlink" href="#d-planar-quadrotor" title="Link to this heading"></a></h2>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="c"># Libraries</span>
-<span class="linenos"> 2</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Symbolics</span>
-<span class="linenos"> 3</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
-<span class="linenos"> 4</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">ChenFliessSeries</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos"> 7</span><span class="w"> </span><span class="c"># 1. Lie derivatives</span>
-<span class="linenos"> 8</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="w"> </span><span class="c"># Symbolic variable representing the state of the system</span>
-<span class="linenos">11</span><span class="w"> </span><span class="nd">@variables</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="linenos">12</span><span class="w"> </span><span class="n">x_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w"> </span><span class="c"># Truncation length of words</span>
-<span class="linenos">15</span><span class="w"> </span><span class="n">Ntrunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
-<span class="linenos">16</span>
-<span class="linenos">17</span><span class="w"> </span><span class="c"># Output of the system</span>
-<span class="linenos">18</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="w"> </span><span class="c"># Parameters of the nonlinear control-affine system</span>
-<span class="linenos">21</span><span class="w"> </span><span class="n">gg</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span><span class="w">   </span><span class="c"># Gravitational acceleration (m/s^2)</span>
-<span class="linenos">22</span><span class="w"> </span><span class="n">m</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.18</span><span class="w">    </span><span class="c"># Mass (kg)</span>
-<span class="linenos">23</span><span class="w"> </span><span class="n">Ixx</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00025</span><span class="w"> </span><span class="c"># Mass moment of inertia (kg*m^2)</span>
-<span class="linenos">24</span><span class="w"> </span><span class="n">L</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.086</span><span class="w">   </span><span class="c"># Arm length (m)</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span><span class="w"> </span><span class="c"># Vector fields</span>
-<span class="linenos">27</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span>
-<span class="linenos">28</span><span class="w">     </span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
-<span class="linenos">29</span><span class="w">     </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">],</span>
-<span class="linenos">30</span><span class="w">     </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">]</span>
-<span class="linenos">31</span><span class="w"> </span><span class="p">)</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="w"> </span><span class="c"># Initial value</span>
-<span class="linenos">34</span><span class="w"> </span><span class="n">x_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">]</span>
-<span class="linenos">35</span>
-<span class="linenos">36</span><span class="w"> </span><span class="c"># initial evaluator</span>
-<span class="linenos">37</span><span class="w"> </span><span class="n">f_L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">build_lie_evaluator</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">x_vec</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
-<span class="linenos">38</span>
-<span class="linenos">39</span><span class="w"> </span><span class="c"># Lie derivatives or coefficients of the Chen-Fliess series</span>
-<span class="linenos">40</span><span class="w"> </span><span class="n">L_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_L</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
-<span class="linenos">41</span>
-<span class="linenos">42</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">43</span><span class="w"> </span><span class="c"># 2. Iterated integrals</span>
-<span class="linenos">44</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">45</span>
-<span class="linenos">46</span><span class="w"> </span><span class="c"># Time step</span>
-<span class="linenos">47</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
-<span class="linenos">48</span>
-<span class="linenos">49</span><span class="w"> </span><span class="c"># Time interval</span>
-<span class="linenos">50</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="mf">0.1</span>
-<span class="linenos">51</span>
-<span class="linenos">52</span><span class="w"> </span><span class="c"># Inputs</span>
-<span class="linenos">53</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">54</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">55</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">56</span>
-<span class="linenos">57</span><span class="w"> </span><span class="c"># Stack of the inputs</span>
-<span class="linenos">58</span><span class="w"> </span><span class="n">utemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">u0</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u1</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="o">&#39;</span><span class="p">)</span>
-<span class="linenos">59</span>
-<span class="linenos">60</span><span class="w"> </span><span class="c"># Iterated integrals</span>
-<span class="linenos">61</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter_int</span><span class="p">(</span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
-<span class="linenos">62</span>
-<span class="linenos">63</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">64</span><span class="w"> </span><span class="c"># 3. Chen–Fliess series</span>
-<span class="linenos">65</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">66</span>
-<span class="linenos">67</span><span class="w"> </span><span class="n">y_cf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">vec</span><span class="p">(</span><span class="n">L_eval</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">E</span><span class="p">)</span><span class="w">   </span><span class="c"># output h = x1</span>
-</pre></div>
-</div>
-<p>We can compare this result with a numerical ODE solver</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="c"># Libraries</span>
-<span class="linenos"> 2</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span>
-<span class="linenos"> 3</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<p>This example demonstrates how to compute Lie derivatives, iterated integrals,
+and a truncated Chen–Fliess approximation for a simplified planar quadrotor.</p>
+<section id="system-dynamics">
+<h3>System dynamics<a class="headerlink" href="#system-dynamics" title="Link to this heading"></a></h3>
+<p>We consider the standard control–affine pendulum model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\dot{x}_1 &amp;= x_4, \\
+\dot{x}_2 &amp;= x_5, \\
+\dot{x}_3 &amp;= x_6, \\
+\dot{x}_4 &amp;= \frac{1}{m} \sin(x_3) (u_1(t) + u_2(t)), \\
+\dot{x}_5 &amp;= -g + \frac{1}{m} \cos(x_3)(u_1(t) + u_2(t)), \\
+\dot{x}_6 &amp;= \frac{L}{I_{xx}} (u_2(t)-u_1(t))
+\end{aligned}\end{split}\]</div>
+<p>with output</p>
+<div class="math notranslate nohighlight">
+\[y = h(x) = x_1.\]</div>
+<p>This can be written in control–affine form</p>
+<div class="math notranslate nohighlight">
+\[\dot{x} = g_0(x) + g_1(x) u_1(t) + g_2(x) u_2(t),\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_0(x) = \begin{bmatrix} x_4 \\ x_5 \\ x_6 \\ 0 \\ 0 \\ 0] \end{bmatrix},
+\quad
+g_1(x) = \begin{bmatrix} 0 \\ 0 \\ 0 \\ \frac{1}{m} \sin(x_3) \\ \frac{1}{m} \cos(x_3) \\ \frac{-L}{I_{xx}} \end{bmatrix},
+\quad
+g_2(x) = \begin{bmatrix} 0 \\ 0 \\ 0 \\ \frac{1}{m} \sin(x_3) \\ \frac{1}{m} \cos(x_3) \\ \frac{L}{I_{xx}} \end{bmatrix}.\end{split}\]</div>
+</section>
+<section id="defining-the-system-in-julia">
+<h3>Defining the system in Julia<a class="headerlink" href="#defining-the-system-in-julia" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Symbolics</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="linenos"> 3</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">ChenFliessSeries</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos"> 6</span><span class="w"> </span><span class="c"># 4. ODE solution using DifferentialEquations.jl</span>
-<span class="linenos"> 7</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">twodquad!</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">10</span><span class="w">     </span><span class="c"># Inputs</span>
-<span class="linenos">11</span><span class="w">     </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">12</span><span class="w">     </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">     </span><span class="c"># Numeric dynamics</span>
-<span class="linenos">15</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
-<span class="linenos">16</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
-<span class="linenos">17</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-<span class="linenos">18</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
-<span class="linenos">19</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
-<span class="linenos">20</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">u1</span><span class="p">)</span>
-<span class="linenos">21</span><span class="w"> </span><span class="k">end</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_val</span>
-<span class="linenos">24</span><span class="w"> </span><span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">twodquad!</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">)</span>
-<span class="linenos">27</span><span class="w"> </span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">saveat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">28</span>
-<span class="linenos">29</span><span class="w"> </span><span class="n">x1_ode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span><span class="w">   </span><span class="c"># extract x1(t), since h = x1</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span>
-<span class="linenos">32</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">33</span><span class="w"> </span><span class="c"># 4. Plot both curves</span>
-<span class="linenos">34</span><span class="w"> </span><span class="c"># ---------------------------------------------------------</span>
-<span class="linenos">35</span><span class="w"> </span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">x1_ode</span><span class="p">,</span>
-<span class="linenos">36</span><span class="w">     </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;ODE solution x₁(t)&quot;</span><span class="p">,</span>
-<span class="linenos">37</span><span class="w">     </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="linenos">38</span><span class="w">     </span><span class="n">color</span><span class="o">=</span><span class="ss">:blue</span><span class="p">)</span>
-<span class="linenos">39</span>
-<span class="linenos">40</span><span class="w"> </span><span class="n">plot!</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_cf</span><span class="p">,</span>
-<span class="linenos">41</span><span class="w">     </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Chen–Fliess (Ntrunc = 3)&quot;</span><span class="p">,</span>
-<span class="linenos">42</span><span class="w">     </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="linenos">43</span><span class="w">     </span><span class="n">linestyle</span><span class="o">=</span><span class="ss">:dash</span><span class="p">,</span>
-<span class="linenos">44</span><span class="w">     </span><span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">)</span>
-<span class="linenos">45</span>
-<span class="linenos">46</span><span class="w"> </span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">)</span>
-<span class="linenos">47</span><span class="w"> </span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;Value&quot;</span><span class="p">)</span>
-<span class="linenos">48</span><span class="w"> </span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;ODE vs Chen–Fliess Approximation&quot;</span><span class="p">)</span>
-<span class="linenos">49</span><span class="w"> </span><span class="n">plot!</span><span class="p">(</span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="w"> </span><span class="nd">@variables</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="linenos"> 6</span><span class="w"> </span><span class="n">x_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w"> </span><span class="n">Ntrunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w">                </span><span class="c"># truncation depth</span>
+<span class="linenos"> 9</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">                  </span><span class="c"># output: horizontal position</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w"> </span><span class="c"># Physical parameters</span>
+<span class="linenos">12</span><span class="w"> </span><span class="n">gg</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span>
+<span class="linenos">13</span><span class="w"> </span><span class="n">m</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mf">0.18</span>
+<span class="linenos">14</span><span class="w"> </span><span class="n">Ixx</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00025</span>
+<span class="linenos">15</span><span class="w"> </span><span class="n">L</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mf">0.086</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w"> </span><span class="c"># Vector fields g0, g1, g2</span>
+<span class="linenos">18</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span>
+<span class="linenos">19</span><span class="w">     </span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">20</span><span class="w">     </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">],</span>
+<span class="linenos">21</span><span class="w">     </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w">  </span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">]</span>
+<span class="linenos">22</span><span class="w"> </span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png"><img alt="iter_int(), iter_lie(), Ivan Perez Avellaneda" class="align-center" src="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png" style="width: 600px; height: 300px;" />
+</section>
+<section id="input-signal">
+<h3>Input signal<a class="headerlink" href="#input-signal" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
+<span class="linenos">2</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="mf">0.1</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">5</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">6</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="w"> </span><span class="n">utemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">u0</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u1</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="o">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="computing-iterated-integrals">
+<h3>Computing iterated integrals<a class="headerlink" href="#computing-iterated-integrals" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter_int</span><span class="p">(</span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="computing-lie-derivatives">
+<h3>Computing Lie derivatives<a class="headerlink" href="#computing-lie-derivatives" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="c"># Initial state</span>
+<span class="linenos">2</span><span class="w"> </span><span class="n">x_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">]</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="w"> </span><span class="c"># Build evaluator for all Lie derivatives up to Ntrunc</span>
+<span class="linenos">5</span><span class="w"> </span><span class="n">f_L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">build_lie_evaluator</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">x_vec</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="w"> </span><span class="c"># Evaluate Lie derivatives at x_val</span>
+<span class="linenos">8</span><span class="w"> </span><span class="n">L_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_L</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="assembling-the-truncated-chen-fliess-series">
+<h3>Assembling the truncated Chen-Fliess series<a class="headerlink" href="#assembling-the-truncated-chen-fliess-series" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="n">y_cf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">vec</span><span class="p">(</span><span class="n">L_eval</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">E</span><span class="p">)</span><span class="w">   </span><span class="c"># output h = x1</span>
+</pre></div>
+</div>
+</section>
+<section id="simulating-the-true-2d-planar-quadrotor-dynamics">
+<h3>Simulating the true 2D planar quadrotor dynamics<a class="headerlink" href="#simulating-the-true-2d-planar-quadrotor-dynamics" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">twodquad!</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="linenos"> 9</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="linenos">10</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="linenos">11</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
+<span class="linenos">12</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
+<span class="linenos">13</span><span class="w">     </span><span class="n">dx</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">u1</span><span class="p">)</span>
+<span class="linenos">14</span><span class="w"> </span><span class="k">end</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_val</span>
+<span class="linenos">17</span><span class="w"> </span><span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">twodquad!</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">)</span>
+<span class="linenos">20</span><span class="w"> </span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">saveat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w"> </span><span class="n">x1_ode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="comparison-plot">
+<h3>Comparison plot<a class="headerlink" href="#comparison-plot" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="c"># Plot comparison</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">x1_ode</span><span class="p">,</span>
+<span class="linenos"> 3</span><span class="w">     </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;ODE solution x₁(t)&quot;</span><span class="p">,</span>
+<span class="linenos"> 4</span><span class="w">     </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="n">color</span><span class="o">=</span><span class="ss">:blue</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w"> </span><span class="n">plot!</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_cf</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="w">     </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Chen–Fliess (Ntrunc = 3)&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span><span class="w">     </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">     </span><span class="n">linestyle</span><span class="o">=</span><span class="ss">:dash</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">     </span><span class="n">color</span><span class="o">=</span><span class="ss">:red</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w"> </span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;Time&quot;</span><span class="p">)</span>
+<span class="linenos">14</span><span class="w"> </span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;Value&quot;</span><span class="p">)</span>
+<span class="linenos">15</span><span class="w"> </span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;ODE vs Chen–Fliess Approximation&quot;</span><span class="p">)</span>
+<span class="linenos">16</span><span class="w"> </span><span class="n">plot!</span><span class="p">(</span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png"><img alt="Chen–Fliess series quadrotor example" class="align-center" src="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png" style="width: 600px; height: 300px;" />
 </a>
+</section>
+</section>
+<section id="pendulum-example">
+<h2>Pendulum Example<a class="headerlink" href="#pendulum-example" title="Link to this heading"></a></h2>
+<p>This example illustrates how to compute a truncated Chen–Fliess series
+for a nonlinear pendulum with torque input and compare it with the true
+ODE solution.</p>
+<section id="id1">
+<h3>System dynamics<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>We consider the standard control–affine pendulum model:</p>
+<div class="math notranslate nohighlight">
+\[\dot{z}_1 = z_2, \qquad
+\dot{z}_2 = -\sin(z_1) + u(t),\]</div>
+<p>with output</p>
+<div class="math notranslate nohighlight">
+\[y = h(z) = z_1.\]</div>
+<p>This can be written in control–affine form</p>
+<div class="math notranslate nohighlight">
+\[\dot{z} = g_0(z) + g_1(z) u(t),\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g_0(z) = \begin{bmatrix} z_2 \\ -\sin(z_1) \end{bmatrix},
+\qquad
+g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
+<p>A visual summary:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>θ (angle)
+↑
+│      • mass
+│     /
+│    /
+│   O──────→ torque u(t)
+│
+└──────────────→ time
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Defining the system in Julia<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">ChenFliessSeries</span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="n">Symbolics</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="nd">@variables</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos"> 5</span><span class="n">z_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Input signal<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
+<span class="linenos">2</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="mf">2.0</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">utemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">u0</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u1</span><span class="o">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Computing iterated integrals<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Ntrunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span>
+<span class="linenos">2</span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter_int</span><span class="p">(</span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Computing Lie derivatives<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">z_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">]</span>
+<span class="linenos">2</span><span class="n">f_L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">build_lie_evaluator</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">z_vec</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+<span class="linenos">3</span><span class="n">L_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_L</span><span class="p">(</span><span class="n">z_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="assembling-the-truncated-chenfliess-series">
+<h3>Assembling the truncated Chen–Fliess series<a class="headerlink" href="#assembling-the-truncated-chenfliess-series" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chen_fliess_output</span><span class="p">(</span><span class="n">Ntrunc</span><span class="p">,</span><span class="w"> </span><span class="n">z_val</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">z_vec</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="simulating-the-true-pendulum-dynamics">
+<h3>Simulating the true pendulum dynamics<a class="headerlink" href="#simulating-the-true-pendulum-dynamics" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">OrdinaryDiffEq</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">function</span><span class="w"> </span><span class="n">pendulum!</span><span class="p">(</span><span class="n">dz</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="n">dz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">dz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span>
+<span class="linenos"> 9</span><span class="k">end</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">z0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_val</span>
+<span class="linenos">12</span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">pendulum!</span><span class="p">,</span><span class="w"> </span><span class="n">z0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">))</span>
+<span class="linenos">13</span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">y_true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">.</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Comparison plot<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;True pendulum output&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">4</span><span class="n">plot!</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">Fc</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Chen–Fliess (N = </span><span class="si">$Ntrunc</span><span class="s">)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+<span class="linenos">6</span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;θ(t)&quot;</span><span class="p">)</span>
+<span class="linenos">7</span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;Pendulum: Chen–Fliess approximation vs ODE solution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="error-analysis">
+<h3>Error analysis<a class="headerlink" href="#error-analysis" title="Link to this heading"></a></h3>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">y_true</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">Fc</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;|y_true - F_c|&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">3</span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+<span class="linenos">4</span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;Approximation error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="interpretation">
+<h3>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading"></a></h3>
+<p>For small inputs and short time horizons, the truncated Chen–Fliess
+series provides an accurate approximation of the pendulum’s output.
+The error increases with:</p>
+<ul class="simple">
+<li><p>truncation depth,</p></li>
+<li><p>input amplitude,</p></li>
+<li><p>nonlinearity (large angles),</p></li>
+<li><p>and time horizon.</p></li>
+</ul>
+<p>This example demonstrates how Chen–Fliess expansions capture nonlinear
+dynamics through iterated integrals and Lie derivatives, providing a
+powerful tool for analysis, approximation, and reachability.</p>
+</section>
 </section>
 </section>
 
@@ -212,7 +438,7 @@ use the <strong>ChenFliessSeries.jl</strong> package for various computations re
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="getting-started.html" class="btn btn-neutral float-left" title="Getting-started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting-started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -7,8 +7,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b20a9999" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -17,18 +19,19 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/theme_switcher.js?v=05e9b7a9"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting-started" href="getting-started.html" />
-    <link rel="prev" title="ChenFliessSeries.jl Documentation" href="index.html" /> 
+    <link rel="next" title="Getting Started" href="getting-started.html" />
+    <link rel="prev" title="Documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #0d6efd" >
 
           
           
@@ -44,23 +47,68 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting-started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-examples">More examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-with-ode-simulation">Comparison with ODE simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-plot">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#guidelines">Guidelines</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0d6efd" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ChenFliessSeries.jl</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -76,34 +124,129 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
-<p>The <strong>ChenFliessSeries.jl</strong> Julia package is developed to compute numerically the
-Chen-Fliess series representation of the output of
-nonlinear input-output control systems. These systems are described by</p>
+<p>This is meant to be a quick introduction to the subject.
+The <strong>ChenFliessSeries.jl</strong> Julia package is developed to
+compute Chen–Fliess series numerically.
+Chen–Fliess series provide an input–output representation
+of nonlinear control-affine systems described in general
+by the following set of equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{eqnarray}
 \dot{z} &amp;=&amp; g_0(z) + \sum_{i = 1}^{m} g_i(z) u_i\\
 y &amp;=&amp; h(z)
 \end{eqnarray}\end{split}\]</div>
-<p>where the vector fields <span class="math notranslate nohighlight">\(g_i\)</span> and the output function <span class="math notranslate nohighlight">\(h\)</span> are analytic.
-The Chen-Fliess series has the form:</p>
-<div class="math notranslate nohighlight">
-\[\begin{eqnarray}
+<p>The vector fields <span class="math notranslate nohighlight">\(g_i\)</span> and the output function <span class="math notranslate nohighlight">\(h\)</span> are analytic,
+and <span class="math notranslate nohighlight">\(u_i\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> denote the input, output, and state of the system,
+respectively.</p>
+<section id="why-chenfliess-series">
+<h2>Why Chen–Fliess series?<a class="headerlink" href="#why-chenfliess-series" title="Link to this heading"></a></h2>
+<p>The Chen–Fliess series provides a powerful way to describe the input–output
+behavior of nonlinear systems without explicitly solving the underlying
+differential equations. It converts the dynamics into an infinite formal
+power series whose coefficients encode the geometry of the vector fields
+and whose terms depend on iterated integrals of the input.</p>
+<p>This representation is particularly useful for:</p>
+<ul class="simple">
+<li><p>approximating system outputs,</p></li>
+<li><p>analyzing nonlinear controllability,</p></li>
+<li><p>computing high-order expansions,</p></li>
+<li><p>benchmarking numerical methods,</p></li>
+<li><p>and studying operator-theoretic properties of control systems.</p></li>
+</ul>
+<p>The Chen–Fliess series has the form:</p>
+<div class="math notranslate nohighlight" id="equation-eq-cfs">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-cfs" title="Link to this equation"></a></span>\[\begin{aligned}
 F_c[u](t) = \sum_{\eta \in X^*} (c, \eta) E_{\eta}[u](t)
-\end{eqnarray}\]</div>
-<p>Here, <span class="math notranslate nohighlight">\(X^*\)</span> is the set of all words over the alphabet
-<span class="math notranslate nohighlight">\(X = \{x_0, \ldots, x_m\}\)</span>, <span class="math notranslate nohighlight">\((c, \eta)\)</span> is the coefficient corresponding to the word
-<span class="math notranslate nohighlight">\(\eta\)</span> in the generating series <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(E_{\eta}[u](t)\)</span> is the iterated integral
-corresponding to the word <span class="math notranslate nohighlight">\(\eta\)</span> and the input function <span class="math notranslate nohighlight">\(u\)</span>.
-The Chen-Fliess series represents the output of the system when
-certain conditions are met.</p>
+\end{aligned}\]</div>
+</section>
+<section id="understanding-the-algebraic-structure">
+<h2>Understanding the algebraic structure<a class="headerlink" href="#understanding-the-algebraic-structure" title="Link to this heading"></a></h2>
+<p>To understand the elements of this series, consider the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Free_monoid">free monoid</a>
+<span class="math notranslate nohighlight">\((X^\ast, \cdot, \emptyset)\)</span> where <span class="math notranslate nohighlight">\(X^*\)</span> is the set of all words
+over the alphabet <span class="math notranslate nohighlight">\(X = \{x_0, \ldots, x_m\}\)</span>.</p>
+<p>Intuitively, each word <span class="math notranslate nohighlight">\(\eta = x_{i_1}\cdots x_{i_k}\)</span> represents a
+composition of vector fields applied in a specific order.
+The symbol <span class="math notranslate nohighlight">\(x_0\)</span> corresponds to the drift vector field <span class="math notranslate nohighlight">\(g_0\)</span>,
+while <span class="math notranslate nohighlight">\(x_i\)</span> corresponds to the controlled vector field <span class="math notranslate nohighlight">\(g_i\)</span>.</p>
+<p>The coefficients <span class="math notranslate nohighlight">\((c, \eta)\)</span> correspond to the word <span class="math notranslate nohighlight">\(\eta\)</span>
+in the generating series <span class="math notranslate nohighlight">\(c=\sum_{\eta\in X^\ast}(c,\eta)\eta\)</span>,
+and <span class="math notranslate nohighlight">\(E_{\eta}[u](t)\)</span> is the iterated integral corresponding to the word
+<span class="math notranslate nohighlight">\(\eta\)</span> and the input function <span class="math notranslate nohighlight">\(u\)</span>.</p>
+</section>
+<section id="definition-of-iterated-integrals">
+<h2>Definition of iterated integrals<a class="headerlink" href="#definition-of-iterated-integrals" title="Link to this heading"></a></h2>
+<p>The iterated integral is defined recursively as <span class="math notranslate nohighlight">\(E_{\emptyset}[u](t)=1\)</span> and</p>
+<div class="math notranslate nohighlight" id="equation-eq-iter-int">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-iter-int" title="Link to this equation"></a></span>\[E_{x_{i}\eta}[u](t)
+= \int_0^t u_{x_i}(\tau)\,E_{\eta}[u](\tau)\,d\tau\]</div>
+</section>
+<section id="definition-of-lie-derivatives">
+<h2>Definition of Lie derivatives<a class="headerlink" href="#definition-of-lie-derivatives" title="Link to this heading"></a></h2>
+<p>The Lie derivative of <span class="math notranslate nohighlight">\(h\)</span> associated to the word <span class="math notranslate nohighlight">\(\eta\)</span> is defined as</p>
+<div class="math notranslate nohighlight" id="equation-eq-iter-lie">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-iter-lie" title="Link to this equation"></a></span>\[L_{\eta}h = L_{x_{i_1}}\cdots L_{x_{i_k}}h\]</div>
+<p>where <span class="math notranslate nohighlight">\(L_{x_{i_j}}h=\frac{\partial h}{\partial z}\cdot g_{i_j}\)</span>.</p>
+<p>Under the <a class="reference external" href="https://proceedings.scipy.org/articles/mfwm5796">proper conditions (Fliess, 1983)</a>,
+we have the identity</p>
+<div class="math notranslate nohighlight">
+\[(c, \eta) = L_{\eta}h\]</div>
+</section>
+<section id="a-concrete-example">
+<h2>A concrete example<a class="headerlink" href="#a-concrete-example" title="Link to this heading"></a></h2>
+<p>For example, the word <span class="math notranslate nohighlight">\(\eta = x_2 x_0 x_1\)</span> corresponds to the Lie derivative</p>
+<div class="math notranslate nohighlight">
+\[L_{x_2 x_0 x_1} h
+= L_{x_2}(L_{x_0}(L_{x_1} h)).\]</div>
+<p>The associated iterated integral is</p>
+<div class="math notranslate nohighlight">
+\[E_{x_2 x_0 x_1}[u](t)
+= \int_0^t u_2(\tau_3)
+    \int_0^{\tau_3} u_0(\tau_2)
+        \int_0^{\tau_2} u_1(\tau_1)\, d\tau_1\, d\tau_2\, d\tau_3.\]</div>
+</section>
+<section id="practical-use-and-truncation">
+<h2>Practical use and truncation<a class="headerlink" href="#practical-use-and-truncation" title="Link to this heading"></a></h2>
+<p>In applications, the infinite series in <a class="reference internal" href="#equation-eq-cfs">(1)</a> is truncated at some depth <span class="math notranslate nohighlight">\(N\)</span>.
+Under analyticity assumptions, the truncated series converges uniformly on compact
+time intervals for sufficiently small inputs. The truncation depth controls the
+accuracy of the approximation, and <strong>ChenFliessSeries.jl</strong> provides tools to study
+this trade-off numerically.</p>
+</section>
+<section id="what-the-package-does">
+<h2>What the package does<a class="headerlink" href="#what-the-package-does" title="Link to this heading"></a></h2>
+<p>The <strong>ChenFliessSeries.jl</strong> package implements these constructions efficiently by:</p>
+<ul class="simple">
+<li><p>computing Lie derivatives symbolically or numerically,</p></li>
+<li><p>generating all words up to a chosen truncation depth,</p></li>
+<li><p>evaluating iterated integrals using high-performance numerical routines,</p></li>
+<li><p>assembling truncated Chen–Fliess approximations,</p></li>
+<li><p>and comparing them with ODE solutions for validation.</p></li>
+</ul>
+<p>This allows users to explore high-order expansions, benchmark algorithms,
+and study nonlinear systems without manually handling the combinatorial
+complexity of words and iterated integrals.</p>
+</section>
+<section id="summary-of-the-chenfliess-pipeline">
+<h2>Summary of the Chen–Fliess pipeline<a class="headerlink" href="#summary-of-the-chenfliess-pipeline" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Define the vector fields <span class="math notranslate nohighlight">\(g_i\)</span> and output <span class="math notranslate nohighlight">\(h\)</span>.</p></li>
+<li><p>Generate all words <span class="math notranslate nohighlight">\(\eta\)</span> up to length <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
+<li><p>Compute Lie derivatives <span class="math notranslate nohighlight">\(L_\eta h\)</span>.</p></li>
+<li><p>Compute iterated integrals <span class="math notranslate nohighlight">\(E_\eta[u](t)\)</span>.</p></li>
+<li><p>Form the truncated series
+<span class="math notranslate nohighlight">\(F_c^{(N)} = \sum_{|\eta|\le N} (c,\eta) E_\eta[u](t)\)</span>.</p></li>
+<li><p>Compare with the true system output if desired.</p></li>
+</ol>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="ChenFliessSeries.jl Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting-started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

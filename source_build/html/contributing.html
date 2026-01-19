@@ -7,8 +7,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributing &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b20a9999" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +18,7 @@
       <script src="_static/documentation_options.js?v=8d563738"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/theme_switcher.js?v=05e9b7a9"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -26,7 +29,7 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #0d6efd" >
 
           
           
@@ -42,9 +45,50 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting-started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-examples">More examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-with-ode-simulation">Comparison with ODE simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-plot">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to Contribute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#guidelines">Guidelines</a></li>
@@ -56,13 +100,13 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0d6efd" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ChenFliessSeries.jl</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>

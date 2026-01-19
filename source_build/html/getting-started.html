@@ -6,9 +6,11 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting-started &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+  <title>Getting Started &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52b2ce3b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +18,443 @@
       <script src="_static/documentation_options.js?v=8d563738"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);</script>
+      <script src="_static/theme_switcher.js?v=05e9b7a9"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,7 +466,7 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #0d6efd" >
 
           
           
@@ -43,31 +482,79 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting-started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-examples">More examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chen-fliess-series">Assembling the truncated Chen-Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-2d-planar-quadrotor-dynamics">Simulating the true 2D planar quadrotor dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-plot">Comparison plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id6">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#guidelines">Guidelines</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0d6efd" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">ChenFliessSeries.jl</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Getting-started</li>
+      <li class="breadcrumb-item active">Getting Started</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,50 +565,265 @@
            <div itemprop="articleBody">
              
   <section id="getting-started">
-<span id="id1"></span><h1>Getting-started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>To install the <strong>ChenFliessSeries.jl</strong> package,
-run the following command in your terminal:</p>
-<p>Using the Julia REPL’s Pkg mode
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">julia&gt;</span> <span class="pre">]</span>
-<span class="pre">pkg&gt;</span> <span class="pre">add</span> <span class="pre">ChenFliessSeries</span>
-<span class="pre">`</span></code>
-Or using the Pkg module in the standard REPL
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">julia&gt;</span> <span class="pre">using</span> <span class="pre">Pkg</span>
-<span class="pre">julia&gt;</span> <span class="pre">Pkg.add(“ChenFliessSeries”)</span>
-<span class="pre">`</span></code></p>
-<p>This will download and install the package along with its dependencies.
-Make sure you have Julia 1.12.3 or higher installed on your system.</p>
+<span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p>This chapter provides a high-level overview of how to begin using
+<strong>ChenFliessSeries.jl</strong>. It introduces the core workflow, explains the
+main concepts, and walks through the essential steps for computing
+Chen–Fliess expansions in practice.</p>
+<p>The goal is to give you a clear mental model first, and then guide you
+through concrete examples.</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#basic-usage"><span class="std std-ref">Basic Usage (High-Level Overview)</span></a></p></li>
+<li><p><a class="reference internal" href="#iterated-integrals"><span class="std std-ref">Computing iterated integrals</span></a></p></li>
+<li><p><a class="reference internal" href="#vector-fields"><span class="std std-ref">Defining vector fields and outputs</span></a></p></li>
+<li><p><a class="reference internal" href="#lie-derivatives"><span class="std std-ref">Computing Lie derivatives</span></a></p></li>
+<li><p><a class="reference internal" href="#truncated-series"><span class="std std-ref">Computing truncated Chen–Fliess series</span></a></p></li>
+<li><p><a class="reference internal" href="#ode-comparison"><span class="std std-ref">Comparing with ODE simulation</span></a></p></li>
+<li><p><a class="reference internal" href="#pitfalls"><span class="std std-ref">Common pitfalls</span></a></p></li>
+<li><p><a class="reference internal" href="#more-examples"><span class="std std-ref">More examples</span></a></p></li>
+</ul>
 </section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<p>Once installed, you can start using the <strong>ChenFliessSeries.jl</strong> package in your Julia scripts.
-Here is a simple example to get you started:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="c"># Time step</span>
-<span class="linenos"> 2</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
-<span class="linenos"> 3</span>
-<span class="linenos"> 4</span><span class="w"> </span><span class="c"># Time interval</span>
-<span class="linenos"> 5</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="mf">0.1</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="w"> </span><span class="c"># Inputs</span>
-<span class="linenos"> 8</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos"> 9</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">10</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span><span class="w"> </span><span class="c"># Stack of the inputs</span>
-<span class="linenos">13</span><span class="w"> </span><span class="n">utemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">u0</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u1</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="o">&#39;</span><span class="p">)</span>
-<span class="linenos">14</span>
-<span class="linenos">15</span><span class="w"> </span><span class="c"># Iterated integrals</span>
-<span class="linenos">16</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter_int</span><span class="p">(</span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+<section id="installation">
+<span id="id2"></span><h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>To install the <strong>ChenFliessSeries.jl</strong> package, run the following command
+in your terminal.</p>
+<p>Using the Julia REPL’s Pkg mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>julia&gt;<span class="w"> </span><span class="o">]</span>
+<span class="linenos">2</span>pkg&gt;<span class="w"> </span>add<span class="w"> </span>ChenFliessSeries
 </pre></div>
 </div>
-<p>This example demonstrates how to create the list of all iterated
-integrals given input function at a specific time and truncation length.
-For more detailed examples and advanced usage,
-please refer to the <a class="reference external" href="examples.html">examples</a> section of the documentation.</p>
+<p>Or using the Pkg module in the standard REPL:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>julia&gt;<span class="w"> </span>using<span class="w"> </span>Pkg
+<span class="linenos">2</span>julia&gt;<span class="w"> </span>Pkg.add<span class="o">(</span><span class="s2">&quot;ChenFliessSeries&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>This will download and install the package along with its dependencies.
+Make sure you have Julia 1.12.3 or higher installed on your system.</p>
+<p>Quick sanity check:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">using</span><span class="w"> </span><span class="n">ChenFliessSeries</span>
+<span class="linenos">2</span><span class="nd">@info</span><span class="w"> </span><span class="s">&quot;ChenFliessSeries.jl loaded successfully!&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-usage-high-level-overview">
+<span id="basic-usage"></span><h2>Basic Usage (High-Level Overview)<a class="headerlink" href="#basic-usage-high-level-overview" title="Link to this heading"></a></h2>
+<p>Once installed, <strong>ChenFliessSeries.jl</strong> enables you to compute the
+building blocks of the Chen–Fliess expansion:</p>
+<ol class="arabic simple">
+<li><p><strong>Iterated integrals</strong> of the input</p></li>
+<li><p><strong>Lie derivatives</strong> of the output along the vector fields</p></li>
+<li><p><strong>Chen–Fliess coefficients</strong> <span class="math notranslate nohighlight">\((c,\eta)\)</span></p></li>
+<li><p><strong>Truncated Chen–Fliess series</strong> <span class="math notranslate nohighlight">\(F_c^{N}[u](t)\)</span></p></li>
+<li><p><strong>Comparison with the true system output</strong></p></li>
+</ol>
+<p>A typical workflow looks like this:</p>
+<pre  class="mermaid">
+        flowchart TD
+    classDef step fill:#f2f2f2,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+
+    U[&quot;Inputs &lt;br/&gt; $$\ u(t)$$&quot;]:::step
+    E[&quot;Iterated integrals&lt;br/&gt; $$\ E^N_\eta[u](t)$$&quot;]:::step
+    G[&quot;Vector fields&lt;br/&gt; $$\ g_i$$&quot;]:::step
+    L[&quot;Lie derivatives&lt;br/&gt; $$\ L_\eta h$$&quot;]:::step
+    F[&quot;Chen–Fliess series&lt;br/&gt; $$\ F_c^N[u](t)$$&quot;]:::step
+    O[&quot;Output of the system&lt;br/&gt;$$\ h(t)$$&quot;]:::step
+
+    G --&gt; L --&gt; F
+    O --&gt; L
+    U --&gt; E --&gt; F
+    </pre><p>The sections below walk through each step in detail.</p>
+</section>
+<section id="computing-iterated-integrals">
+<span id="iterated-integrals"></span><h2>Computing iterated integrals<a class="headerlink" href="#computing-iterated-integrals" title="Link to this heading"></a></h2>
+<p>To compute the iterated integrals <span class="math notranslate nohighlight">\(E_\eta[u](t)\)</span>,
+you must define:</p>
+<ul class="simple">
+<li><p>time interval <span class="math notranslate nohighlight">\([0,t_f]\)</span>,</p></li>
+<li><p>input function <span class="math notranslate nohighlight">\(u(t)\)</span>,</p></li>
+<li><p>the integration step <span class="math notranslate nohighlight">\(dt\)</span>.</p></li>
+<li><p>truncation length <span class="math notranslate nohighlight">\(N\)</span></p></li>
+</ul>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">ChenFliessSeries</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="mf">0.1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w"> </span><span class="n">utemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcat</span><span class="p">(</span><span class="n">u0</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u1</span><span class="o">&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u2</span><span class="o">&#39;</span><span class="p">)</span><span class="w">   </span><span class="c"># shape: (m+1, length(t))</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w"> </span><span class="n">Ntrunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">13</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iter_int</span><span class="p">(</span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This computes all iterated integrals <span class="math notranslate nohighlight">\(E_\eta[u](t)\)</span> for
+<span class="math notranslate nohighlight">\(|\eta| \le N\)</span>.</p>
+<p>The algorithm of the <cite>iter_int</cite> function is based on Chen’s identity
+which translates numerically to</p>
+<div class="math notranslate nohighlight" id="equation-eq-cfs">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-cfs" title="Link to this equation"></a></span>\[\begin{aligned}
+E_{X^k}[u](t)=\int _0^t u(t)\otimes E_{X^{k-1}}[u](t) d\tau .
+\end{aligned}\]</div>
+<p>where <span class="math notranslate nohighlight">\(u(t)\)</span> is the matrix of inputs stacked horizontally,
+<span class="math notranslate nohighlight">\(E_{X^k}[u](t)\)</span> is the matrix that stacks horizontally the iterated integrals
+and the tensor symbol <span class="math notranslate nohighlight">\(\otimes\)</span> represents
+the <a class="reference external" href="https://en.wikipedia.org/wiki/Khatri%E2%80%93Rao_product">column-wise Kronecker product</a> .</p>
+<p>The outline of the calculation of the algorithm follows the workflow:</p>
+<pre  class="mermaid">
+        flowchart TD
+    classDef step fill:#f2f2f2,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+    classDef calc fill:#e8f0ff,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+    classDef loop fill:#fff4d6,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+
+    A[&quot;Start&lt;br/&gt;&lt;span&gt; $$\ ( u_{\text{temp}}, dt, N_{\text{trunc}})$$&lt;/span&gt;&quot;]:::step
+
+    H[&quot;Compute first-order integrals: &lt;span&gt; $$\ E_{X^1}[u](t) $$&lt;/span&gt;&quot;]:::calc
+
+    I{&quot;Loop i = 1 to Ntrunc-1&quot;}:::loop
+
+    K[&quot;&lt;span&gt; $$\ \text{Etemp} = u(t)\otimes E_{X^{i}}[u](t) $$&lt;/span&gt;&quot;]:::calc
+    M[&quot;Compute: &lt;span&gt; $$\ E_{X^{i+1}}[u](t) = \int _0^t \text{Etemp} d\tau $$&lt;/span&gt;&quot;]:::calc
+    N[&quot;Store &lt;span&gt; $$\ E_{X^{i+1}}[u](t) $$&lt;/span&gt;&quot;]:::step
+
+    O[&quot;Return the integral block&quot;]:::step
+
+    %% Connections
+    A --&gt; H --&gt; I
+    I --&gt; K  --&gt; M
+    M --&gt; N --&gt; I
+    I --&gt; O
+    </pre></section>
+<section id="defining-vector-fields-and-outputs">
+<span id="vector-fields"></span><h2>Defining vector fields and outputs<a class="headerlink" href="#defining-vector-fields-and-outputs" title="Link to this heading"></a></h2>
+<p>To compute Chen–Fliess coefficients <span class="math notranslate nohighlight">\((c,\eta) = L_\eta h\)</span>,
+you must define:</p>
+<ul class="simple">
+<li><p>the drift vector field <span class="math notranslate nohighlight">\(g_0(z)\)</span>,</p></li>
+<li><p>the controlled vector fields <span class="math notranslate nohighlight">\(g_i(z)\)</span>,</p></li>
+<li><p>the output function <span class="math notranslate nohighlight">\(h(z)\)</span>.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">Symbolics</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="nd">@variables</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="linenos"> 4</span><span class="n">z_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">Ntrunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c"># parameters</span>
+<span class="linenos">11</span><span class="n">gg</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">9.81</span><span class="w">   </span><span class="c"># Gravitational acceleration (m/s^2)</span>
+<span class="linenos">12</span><span class="n">m</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.18</span><span class="w">    </span><span class="c"># Mass (kg)</span>
+<span class="linenos">13</span><span class="n">Ixx</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00025</span><span class="w"> </span><span class="c"># Mass moment of inertia (kg*m^2)</span>
+<span class="linenos">14</span><span class="n">L</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mf">0.086</span><span class="w">   </span><span class="c"># Arm length (m)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span>
+<span class="linenos">18</span><span class="w">    </span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">    </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">],</span>
+<span class="linenos">20</span><span class="w">    </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">]</span>
+<span class="linenos">21</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="computing-lie-derivatives">
+<span id="lie-derivatives"></span><h2>Computing Lie derivatives<a class="headerlink" href="#computing-lie-derivatives" title="Link to this heading"></a></h2>
+<p>Lie derivatives encode the geometric structure of the system.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">x_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">]</span><span class="w">   </span><span class="c"># make it Float64 to avoid promotion issues</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c"># initial evaluator for Ntrunc = 4</span>
+<span class="linenos">4</span><span class="n">f_L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">build_lie_evaluator</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">x_vec</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">L_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f_L</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span><span class="w">   </span><span class="c"># Vector{Float64}, no Symbolics anywhere</span>
+</pre></div>
+</div>
+<p>Similarly to the iterated integrals, the outline of the calculation of the algorithm follows the workflow:</p>
+<pre  class="mermaid">
+        flowchart TD
+    classDef step fill:#f2f2f2,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+    classDef calc fill:#e8f0ff,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+    classDef loop fill:#fff4d6,stroke:#333,stroke-width:1px,rx:6px,ry:6px,color:black;
+
+    A[&quot;Start&lt;br/&gt;&lt;span&gt; $$\ ( g_i(z), h(z),  N_{\text{trunc}})$$&lt;/span&gt;&quot;]:::step
+
+    H[&quot;Compute first-order Lie derivatives: &lt;span&gt; $$\ L_{X^1}h(z) $$&lt;/span&gt;&quot;]:::calc
+
+    I{&quot;Loop i = 1 to Ntrunc-1&quot;}:::loop
+
+    K[&quot;&lt;span&gt; $$\ \text{Ltemp} = \frac{\partial}{\partial z}L_{X^i}h(z) $$&lt;/span&gt;&quot;]:::calc
+    M[&quot;Compute: &lt;span&gt; $$\  g\otimes \text{Ltemp} $$&lt;/span&gt;&quot;]:::calc
+    N[&quot;Store &lt;span&gt; $$\ L_{X^{i+1}}h(z) $$&lt;/span&gt;&quot;]:::step
+
+    O[&quot;Return the Lie derivative block&quot;]:::step
+
+    %% Connections
+    A --&gt; H --&gt; I
+    I --&gt; K  --&gt; M
+    M --&gt; N --&gt; I
+    I --&gt; O
+    </pre></section>
+<section id="computing-truncated-chenfliess-series">
+<span id="truncated-series"></span><h2>Computing truncated Chen–Fliess series<a class="headerlink" href="#computing-truncated-chenfliess-series" title="Link to this heading"></a></h2>
+<p>Once iterated integrals and Lie derivatives are available, you can
+assemble the truncated Chen–Fliess series:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chen_fliess_series</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This returns a numerical approximation of</p>
+<div class="math notranslate nohighlight">
+\[F_c^{N}[u](t) = \sum_{|\eta| \le N} (c, \eta)\, E_\eta[u](t).\]</div>
+</section>
+<section id="comparing-with-ode-simulation">
+<span id="ode-comparison"></span><h2>Comparing with ODE simulation<a class="headerlink" href="#comparing-with-ode-simulation" title="Link to this heading"></a></h2>
+<p>To validate the approximation, compare it with the true system output.</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">function</span><span class="w"> </span><span class="n">twodquad!</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="c"># input u1(t)</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w">          </span><span class="c"># scalar, t is a Float64 here</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="c"># same dynamics as symbolic g, but numeric</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="linenos">12</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">gg</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span><span class="o">*</span><span class="p">(</span><span class="n">u1</span><span class="o">+</span><span class="n">u2</span><span class="p">)</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">dx</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="n">Ixx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">u1</span><span class="p">)</span>
+<span class="linenos">15</span><span class="k">end</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">]</span>
+<span class="linenos">18</span><span class="n">tspan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">twodquad!</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">tspan</span><span class="p">)</span>
+<span class="linenos">21</span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">saveat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">x1_ode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span><span class="w">   </span><span class="c"># extract x₂(t), since h = x₂</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">y_true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1_ode</span>
+<span class="linenos">26</span><span class="n">y_cfs</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">Fc</span>
+</pre></div>
+</div>
+</section>
+<section id="common-pitfalls">
+<span id="pitfalls"></span><h2>Common pitfalls<a class="headerlink" href="#common-pitfalls" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Mismatched dimensions</strong>: Inputs must have shape <cite>(m+1, length(t))</cite>.</p></li>
+<li><p><strong>Transpose required</strong>: Use <cite>vcat(u0’, u1’, …)</cite>.</p></li>
+<li><p><strong>Large truncation depth</strong>: Word count grows combinatorially.</p></li>
+<li><p><strong>Vector fields should be symbolic</strong> for compliance.</p></li>
+<li><p><strong>Indexing inside ODE solvers</strong> must match the time grid.</p></li>
+</ul>
+</section>
+<section id="more-examples">
+<span id="id3"></span><h2>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h2>
+<p>For more detailed examples and advanced usage,
+see the <a class="reference external" href="examples.html">examples</a> section of the documentation.</p>
 </section>
 </section>
 

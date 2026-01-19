@@ -6,9 +6,11 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChenFliessSeries.jl Documentation &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+  <title>Documentation &mdash; ChenFliessSeries.jl 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52b2ce3b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +18,8 @@
       <script src="_static/documentation_options.js?v=8d563738"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/theme_switcher.js?v=05e9b7a9"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -26,7 +30,7 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #0d6efd" >
 
           
           
@@ -42,27 +46,79 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting-started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-examples">More examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chen-fliess-series">Assembling the truncated Chen-Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-2d-planar-quadrotor-dynamics">Simulating the true 2D planar quadrotor dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-plot">Comparison plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id6">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#guidelines">Guidelines</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0d6efd" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">ChenFliessSeries.jl</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ChenFliessSeries.jl Documentation</li>
+      <li class="breadcrumb-item active">Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,32 +128,194 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="chenfliessseries-jl-documentation">
-<h1>ChenFliessSeries.jl Documentation<a class="headerlink" href="#chenfliessseries-jl-documentation" title="Link to this heading"></a></h1>
-<p>Welcome to the documentation of the <strong>ChenFliessSeries.jl</strong> Julia package.</p>
-<p><strong>ChenFliessSeries.jl</strong> is used for the computation of Chen-Fliess series
-and their applications in control and reachability theory.
-This documentation provides a comprehensive guide to using and contributing to the project.</p>
-<p>The package provides the following functionalities:</p>
+   <div align="center">
+     <img src="_static/CFSjul_logo_2.png" alt="ChenFliessSeries.jl logo" width="360">
+ </div>
+
+<br>
+
+<br><section id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h1>
+<p align="center">
+  <a href="https://github.com/iperezav/ChenFliessSeries.jl/releases">
+    <img src="https://img.shields.io/github/v/release/iperezav/ChenFliessSeries.jl?style=for-the-badge&color=0d6efd&label=Version" />
+  </a>
+  <a href="https://your-docs-url-here">
+    <img src="https://img.shields.io/badge/Docs-Stable-28a745?style=for-the-badge" />
+  </a>
+  <a href="https://github.com/iperezav/ChenFliessSeries.jl/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/iperezav/ChenFliessSeries.jl/CI.yml?style=for-the-badge&label=CI" />
+  </a>
+  <a href="https://github.com/iperezav/ChenFliessSeries.jl/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/iperezav/ChenFliessSeries.jl?style=for-the-badge&color=6c757d" />
+  </a>
+</p><div align="center" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+    <h2 style="font-weight: 600;">Fast, Recursive, and Symbolic Chen–Fliess Series in Julia</h2>
+    <p style="font-size: 1.1rem; max-width: 650px; margin: auto;">
+        A lightweight, high‑performance Julia package for computing iterated integrals,
+        Lie derivatives, and truncated Chen–Fliess expansions for nonlinear control‑affine systems.
+    </p>
+</div><section id="features-at-a-glance">
+<h2>Features at a glance<a class="headerlink" href="#features-at-a-glance" title="Link to this heading"></a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; margin-bottom: 1.5rem;">
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.75rem 1rem;">
+    <h4>Iterated integrals</h4>
+    <p>Compute all iterated integrals up to a chosen word length using recursive schemes based on Chen’s identity.</p>
+  </div>
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.75rem 1rem;">
+    <h4>Lie derivatives</h4>
+    <p>Generate Lie derivatives indexed by words in the free monoid, symbolically or numerically.</p>
+  </div>
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.75rem 1rem;">
+    <h4>Truncated Chen–Fliess series</h4>
+    <p>Assemble truncated series and compare them against ODE simulations for validation and benchmarking.</p>
+  </div>
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.75rem 1rem;">
+    <h4>Minimal dependencies</h4>
+    <p>Built on top of <code>Symbolics.jl</code> and <code>LinearAlgebra</code> for a lean, composable stack.</p>
+  </div>
+
+</div><aside class="sidebar">
+<p class="sidebar-title">What are Chen–Fliess series?</p>
+<p>Chen–Fliess series provide an input–output representation of analytic
+nonlinear control‑affine systems.
+They express the output as a formal power series whose coefficients are
+Lie derivatives of the output function and whose terms are iterated
+integrals of the input.</p>
+<p>Formally:</p>
+<div class="math notranslate nohighlight">
+\[F_c[u](t) = \sum_{\eta \in X^*} (c,\eta)\, E_\eta[u](t),\]</div>
+<p>where:</p>
 <ul class="simple">
-<li><p>The list of iterated integrals indexed by words of a certain length or less.</p></li>
-<li><p>The list of Lie derivatives indexed by words of a certain length or less.</p></li>
-<li><p>A single iterated integral indexed by a given word.</p></li>
-<li><p>A single Lie derivative indexed by a given word.</p></li>
-<li><p>The symbolic polynomial that represents the Chen-Fliess series for a constant input.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta\)</span> is a word over the alphabet <span class="math notranslate nohighlight">\(X = \{x_0,\ldots,x_m\}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\((c,\eta)\)</span> is the coefficient given by a Lie derivative,</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_\eta[u](t)\)</span> is the iterated integral associated with <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
 </ul>
+<p>These series play a central role in nonlinear control theory, system
+approximation, and operator‑theoretic analysis.</p>
+</aside>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><strong>ChenFliessSeries.jl</strong> implements efficient numerical and symbolic tools for:</p>
+<ul class="simple">
+<li><p>generating all iterated integrals indexed by words up to a chosen length,</p></li>
+<li><p>computing Lie derivatives associated with words in the free monoid,</p></li>
+<li><p>assembling truncated Chen–Fliess series,</p></li>
+<li><p>validating approximations against ODE simulations.</p></li>
+</ul>
+<p>The implementation is based on Chen’s identity, which provides recursive
+relations between iterated integrals and Lie derivatives, significantly
+reducing redundant computation.</p>
+<p>This package is the first publicly available open‑source implementation of
+these tools in the Julia ecosystem, relying only on <cite>Symbolics.jl</cite> and
+<cite>LinearAlgebra.jl</cite> for minimal and efficient dependencies.</p>
+</section>
+<section id="why-julia">
+<h2>Why Julia?<a class="headerlink" href="#why-julia" title="Link to this heading"></a></h2>
+<p><strong>ChenFliessSeries.jl</strong> is written in Julia to leverage:</p>
+<ul class="simple">
+<li><p><strong>High performance</strong>: JIT compilation and type specialization enable
+tight inner loops for iterated integrals and Lie derivatives.</p></li>
+<li><p><strong>Multiple dispatch</strong>: Natural expression of different system types,
+vector field representations, and numeric backends.</p></li>
+<li><p><strong>Symbolic–numeric synergy</strong>: Seamless integration with <cite>Symbolics.jl</cite>
+for symbolic Lie derivatives and <cite>LinearAlgebra</cite> for efficient evaluation.</p></li>
+<li><p><strong>Interactive workflows</strong>: Notebooks and REPL‑driven exploration make
+it easy to prototype, visualize, and benchmark Chen–Fliess expansions.</p></li>
+</ul>
+</section>
+<section id="citing-this-package">
+<h2>Citing this package<a class="headerlink" href="#citing-this-package" title="Link to this heading"></a></h2>
+<p>If you use <strong>ChenFliessSeries.jl</strong> in academic work, please cite it as:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">ChenFliessSeriesJL</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{ChenFliessSeries.jl: A Julia package for computing Chen-Fliess series}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{Perez Avellaneda, Ivan}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w">          </span><span class="p">=</span><span class="w"> </span><span class="s">{https://github.com/iperezav/ChenFliessSeries.jl}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">note</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{Julia package version 1.0.0}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A <a class="reference external" href="_static/CITATION.bib">CITATION.bib</a> file is also included in the repository.</p>
+</section>
+<section id="example-gallery">
+<h2>Example gallery<a class="headerlink" href="#example-gallery" title="Link to this heading"></a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">
+    <img src="_static/examples/pendulum.png" alt="Pendulum Chen–Fliess approximation" style="width: 100%; border-radius: 4px;">
+    <p style="margin-top: 0.5rem;"><strong>Nonlinear pendulum</strong><br>Chen–Fliess approximation vs ODE solution.</p>
+  </div>
+
+  <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">
+    <img src="_static/examples/quadcopter.png" alt="Quadrotor Chen–Fliess approximation" style="width: 100%; border-radius: 4px;">
+    <p style="margin-top: 0.5rem;"><strong>Planar quadrotor</strong><br>Control‑affine model and truncated series behavior.</p>
+  </div>
+
+  <!--<div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">
+    <img src="_static/examples/reachability_cfs.png" alt="Reachability via Chen–Fliess" style="width: 100%; border-radius: 4px;">
+    <p style="margin-top: 0.5rem;"><strong>Reachability</strong><br>Using Chen–Fliess expansions for reachable set approximations.</p>
+  </div>-->
+
+</div></section>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting-started</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-chenfliess-series">Why Chen–Fliess series?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#understanding-the-algebraic-structure">Understanding the algebraic structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-iterated-integrals">Definition of iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#definition-of-lie-derivatives">Definition of Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#a-concrete-example">A concrete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#practical-use-and-truncation">Practical use and truncation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#what-the-package-does">What the package does</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#summary-of-the-chenfliess-pipeline">Summary of the Chen–Fliess pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#contents">Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#basic-usage-high-level-overview">Basic Usage (High-Level Overview)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#defining-vector-fields-and-outputs">Defining vector fields and outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#computing-truncated-chenfliess-series">Computing truncated Chen–Fliess series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#comparing-with-ode-simulation">Comparing with ODE simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#more-examples">More examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#d-planar-quadrotor">2D Planar Quadrotor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#system-dynamics">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#defining-the-system-in-julia">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#input-signal">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-iterated-integrals">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#computing-lie-derivatives">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chen-fliess-series">Assembling the truncated Chen-Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-2d-planar-quadrotor-dynamics">Simulating the true 2D planar quadrotor dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#comparison-plot">Comparison plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#pendulum-example">Pendulum Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id1">System dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id2">Defining the system in Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id3">Input signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id4">Computing iterated integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id5">Computing Lie derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#assembling-the-truncated-chenfliess-series">Assembling the truncated Chen–Fliess series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simulating-the-true-pendulum-dynamics">Simulating the true pendulum dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#id6">Comparison plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#error-analysis">Error analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>

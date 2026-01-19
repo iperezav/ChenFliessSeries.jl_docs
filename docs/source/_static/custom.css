@@ -1,0 +1,21 @@
+.math {
+    text-align: left; /* Or center, depending on your base style */
+}
+.eqno {
+    float: right; /* Pushes the equation number to the right */
+}
+.eqno a.headerlink {
+    position: relative; /* Helps position the link */
+    z-index: 1;        /* Ensures link appears above math */
+}
+
+
+/* Force Mermaid node text to be black */
+.mermaid text {
+    fill: black !important;
+}
+
+/* Optional: darker stroke for better contrast */
+.mermaid .node rect {
+    stroke: #333 !important;
+}
