@@ -246,18 +246,7 @@ where
     \qquad
     g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
 
-A visual summary:
 
-.. code-block:: text
-
-        θ (angle)
-        ↑
-        │      • mass
-        │     /
-        │    /
-        │   O──────→ torque u(t)
-        │
-        └──────────────→ time
 
 Defining the system in Julia
 -------------------------------
