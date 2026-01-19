@@ -11,8 +11,8 @@ by the following set of equations:
 .. math::
 
     \begin{aligned}
-    \dot{z} &=& g_0(z) + \sum_{i = 1}^{m} g_i(z) u_i\\
-    y &=& h(z)
+    \dot{z} &= g_0(z) + \sum_{i = 1}^{m} g_i(z) u_i\\
+    y &= h(z)
     \end{aligned}
 
 The vector fields :math:`g_i` and the output function :math:`h` are analytic,
