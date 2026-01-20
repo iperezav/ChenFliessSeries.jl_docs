@@ -286,7 +286,9 @@ g_2(x) = \begin{bmatrix} 0 \\ 0 \\ 0 \\ \frac{1}{m} \sin(x_3) \\ \frac{1}{m} \co
 <span class="linenos">16</span><span class="w"> </span><span class="n">plot!</span><span class="p">(</span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png"><img alt="Chen–Fliess series quadrotor example" class="align-center" src="https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png" style="width: 600px; height: 300px;" />
+<a class="reference internal image-reference" href="_images/Chen-Fliess-series_quadrotor.png"><img alt="Chen–Fliess series quadrotor example" class="align-center" src="_images/Chen-Fliess-series_quadrotor.png" style="width: 600px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/quadrotor_errors.png"><img alt="Chen–Fliess series quadrotor example" class="align-center" src="_images/quadrotor_errors.png" style="width: 600px; height: 300px;" />
 </a>
 </section>
 </section>
@@ -312,17 +314,6 @@ ODE solution.</p>
 \[\begin{split}g_0(z) = \begin{bmatrix} z_2 \\ -\sin(z_1) \end{bmatrix},
 \qquad
 g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
-<p>A visual summary:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>θ (angle)
-↑
-│      • mass
-│     /
-│    /
-│   O──────→ torque u(t)
-│
-└──────────────→ time
-</pre></div>
-</div>
 </section>
 <section id="id2">
 <h3>Defining the system in Julia<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
@@ -333,9 +324,9 @@ g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
 <span class="linenos"> 5</span><span class="n">z_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span>
 <span class="linenos"> 6</span>
 <span class="linenos"> 7</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hcat</span><span class="p">(</span>
-<span class="linenos"> 8</span><span class="w">    </span><span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
-<span class="linenos"> 9</span><span class="w">    </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
-<span class="linenos">10</span><span class="w">    </span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="p">[</span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+<span class="linenos"> 9</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="linenos">10</span><span class="p">)</span>
 <span class="linenos">11</span>
 <span class="linenos">12</span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -370,27 +361,28 @@ g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
 </section>
 <section id="assembling-the-truncated-chenfliess-series">
 <h3>Assembling the truncated Chen–Fliess series<a class="headerlink" href="#assembling-the-truncated-chenfliess-series" title="Link to this heading"></a></h3>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chen_fliess_output</span><span class="p">(</span><span class="n">Ntrunc</span><span class="p">,</span><span class="w"> </span><span class="n">z_val</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">z_vec</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">y_cf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">vec</span><span class="p">(</span><span class="n">L_eval</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">E</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="simulating-the-true-pendulum-dynamics">
 <h3>Simulating the true pendulum dynamics<a class="headerlink" href="#simulating-the-true-pendulum-dynamics" title="Link to this heading"></a></h3>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">OrdinaryDiffEq</span>
-<span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">function</span><span class="w"> </span><span class="n">pendulum!</span><span class="p">(</span><span class="n">dz</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="w">    </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">)</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="w">    </span><span class="n">dz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="linenos"> 8</span><span class="w">    </span><span class="n">dz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span>
-<span class="linenos"> 9</span><span class="k">end</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="n">z0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_val</span>
-<span class="linenos">12</span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">pendulum!</span><span class="p">,</span><span class="w"> </span><span class="n">z0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">))</span>
-<span class="linenos">13</span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
-<span class="linenos">14</span>
-<span class="linenos">15</span><span class="n">y_true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="o">.</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">using</span><span class="w"> </span><span class="n">DifferentialEquations</span>
+<span class="linenos"> 2</span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">function</span><span class="w"> </span><span class="n">pendulum!</span><span class="p">(</span><span class="n">dz</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">2</span><span class="n">t</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="n">dz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="linenos"> 9</span><span class="n">dz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span>
+<span class="linenos">10</span><span class="k">end</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">z0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_val</span>
+<span class="linenos">13</span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODEProblem</span><span class="p">(</span><span class="n">pendulum!</span><span class="p">,</span><span class="w"> </span><span class="n">z0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">))</span>
+<span class="linenos">14</span><span class="n">sol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">Tsit5</span><span class="p">(),</span><span class="w"> </span><span class="n">saveat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">y_true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">:</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
@@ -398,8 +390,8 @@ g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
 <h3>Comparison plot<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
 <span class="linenos">2</span>
-<span class="linenos">3</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;True pendulum output&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">4</span><span class="n">plot!</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">Fc</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Chen–Fliess (N = </span><span class="si">$Ntrunc</span><span class="s">)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">3</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_cf</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Chen–Fliess (N = </span><span class="si">$Ntrunc</span><span class="s">)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">4</span><span class="n">plot!</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;True pendulum output&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="linenos">5</span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
 <span class="linenos">6</span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;θ(t)&quot;</span><span class="p">)</span>
 <span class="linenos">7</span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;Pendulum: Chen–Fliess approximation vs ODE solution&quot;</span><span class="p">)</span>
@@ -408,13 +400,17 @@ g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.\end{split}\]</div>
 </section>
 <section id="error-analysis">
 <h3>Error analysis<a class="headerlink" href="#error-analysis" title="Link to this heading"></a></h3>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">y_true</span><span class="w"> </span><span class="o">.-</span><span class="w"> </span><span class="n">Fc</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="o">.</span><span class="p">(</span><span class="n">y_true</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_cf</span><span class="p">)</span>
 <span class="linenos">2</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s">&quot;|y_true - F_c|&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="linenos">3</span><span class="n">xlabel!</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
 <span class="linenos">4</span><span class="n">ylabel!</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">)</span>
 <span class="linenos">5</span><span class="n">title!</span><span class="p">(</span><span class="s">&quot;Approximation error&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<a class="reference internal image-reference" href="_images/Chen-Fliess-series_pendulum.png"><img alt="Chen–Fliess series pendulum example" class="align-center" src="_images/Chen-Fliess-series_pendulum.png" style="width: 600px; height: 300px;" />
+</a>
+<a class="reference internal image-reference" href="_images/pendulum_errors.png"><img alt="Chen–Fliess series pendulum example" class="align-center" src="_images/pendulum_errors.png" style="width: 600px; height: 300px;" />
+</a>
 </section>
 <section id="interpretation">
 <h3>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading"></a></h3>
@@ -424,7 +420,6 @@ The error increases with:</p>
 <ul class="simple">
 <li><p>truncation depth,</p></li>
 <li><p>input amplitude,</p></li>
-<li><p>nonlinearity (large angles),</p></li>
 <li><p>and time horizon.</p></li>
 </ul>
 <p>This example demonstrates how Chen–Fliess expansions capture nonlinear

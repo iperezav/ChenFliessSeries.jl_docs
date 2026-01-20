@@ -19,7 +19,7 @@ Documentation
       <a href="https://github.com/iperezav/ChenFliessSeries.jl/releases">
         <img src="https://img.shields.io/github/v/release/iperezav/ChenFliessSeries.jl?style=for-the-badge&color=0d6efd&label=Version" />
       </a>
-      <a href="https://your-docs-url-here">
+      <a href="https://chenfliessseriesjl-docs.readthedocs.io/en/latest/">
         <img src="https://img.shields.io/badge/Docs-Stable-28a745?style=for-the-badge" />
       </a>
       <a href="https://github.com/iperezav/ChenFliessSeries.jl/actions">
@@ -153,12 +153,24 @@ Example gallery
 
       <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">
         <img src="_static/examples/pendulum.png" alt="Pendulum Chen–Fliess approximation" style="width: 100%; border-radius: 4px;">
-        <p style="margin-top: 0.5rem;"><strong>Nonlinear pendulum</strong><br>Chen–Fliess approximation vs ODE solution.</p>
+        <p style="margin-top: 0.5rem;">
+        <a href="https://chenfliessseriesjl-docs.readthedocs.io/en/latest/examples.html#pendulum-example">
+        <strong>Nonlinear pendulum</strong>
+        </a>
+        <br>
+        Chen–Fliess approximation vs ODE solution.
+        </p>
       </div>
 
       <div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">
         <img src="_static/examples/quadcopter.png" alt="Quadrotor Chen–Fliess approximation" style="width: 100%; border-radius: 4px;">
-        <p style="margin-top: 0.5rem;"><strong>Planar quadrotor</strong><br>Control‑affine model and truncated series behavior.</p>
+        <p style="margin-top: 0.5rem;">
+        <a href="https://chenfliessseriesjl-docs.readthedocs.io/en/latest/examples.html#d-planar-quadrotor">
+        <strong>2D Planar quadrotor</strong>
+        </a>
+        <br>
+        Control‑affine model and truncated series behavior.
+        </p>
       </div>
 
       <!--<div style="border: 1px solid #2b303b; border-radius: 8px; padding: 0.5rem;">

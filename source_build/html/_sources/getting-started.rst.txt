@@ -271,7 +271,7 @@ assemble the truncated Chen–Fliess series:
 .. code-block:: julia
     :linenos:
 
-    Fc = chen_fliess_series(h, g, utemp, dt, Ntrunc)
+    Fc = z_val[1] .+ vec(L_eval' * E)  
 
 This returns a numerical approximation of
 

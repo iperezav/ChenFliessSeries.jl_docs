@@ -771,7 +771,7 @@ you must define:</p>
 <span id="truncated-series"></span><h2>Computing truncated Chen–Fliess series<a class="headerlink" href="#computing-truncated-chenfliess-series" title="Link to this heading"></a></h2>
 <p>Once iterated integrals and Lie derivatives are available, you can
 assemble the truncated Chen–Fliess series:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chen_fliess_series</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">utemp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">Ntrunc</span><span class="p">)</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">Fc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">vec</span><span class="p">(</span><span class="n">L_eval</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">E</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This returns a numerical approximation of</p>

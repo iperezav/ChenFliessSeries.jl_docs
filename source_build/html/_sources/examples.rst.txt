@@ -201,7 +201,13 @@ Comparison plot
     title!("ODE vs Chen–Fliess Approximation")
     plot!(grid = true)
 
-.. image:: https://raw.githubusercontent.com/iperezav/ChenFliessSeries.jl/main/assets/Chen-Fliess-series_quadrotor.png
+.. image:: _static/examples/Chen-Fliess-series_quadrotor.png
+   :alt: Chen–Fliess series quadrotor example
+   :align: center
+   :width: 600px
+   :height: 300px
+
+.. image:: _static/examples/quadrotor_errors.png
    :alt: Chen–Fliess series quadrotor example
    :align: center
    :width: 600px
@@ -246,18 +252,7 @@ where
     \qquad
     g_1(z) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
 
-A visual summary:
 
-.. code-block:: text
-
-        θ (angle)
-        ↑
-        │      • mass
-        │     /
-        │    /
-        │   O──────→ torque u(t)
-        │
-        └──────────────→ time
 
 Defining the system in Julia
 -------------------------------
@@ -272,10 +267,10 @@ Defining the system in Julia
     z_vec = z
 
     g = hcat(
-        [z[2], -sin(z[1])],
-        [0, 1],
-        )
-    
+    [z[2], -sin(z[1])],
+    [0, 1],
+    )
+
     h = z[1]
 
 Input signal
@@ -317,7 +312,7 @@ Assembling the truncated Chen–Fliess series
 .. code-block:: julia
     :linenos:
 
-    Fc = chen_fliess_output(Ntrunc, z_val, g, h, z_vec, dt, u)
+    y_cf = z_val[1] .+ vec(L_eval' * E)  
 
 Simulating the true pendulum dynamics
 -----------------------------------------
@@ -325,21 +320,22 @@ Simulating the true pendulum dynamics
 .. code-block:: julia
     :linenos:
 
-    using OrdinaryDiffEq
+    using DifferentialEquations
+    using Plots
 
     function pendulum!(dz, z, p, t)
 
-        u = 0.5*sin.(2t)
+    u = 0.5*sin.(2t)
 
-        dz[1] = z[2]
-        dz[2] = -sin(z[1]) + u
+    dz[1] = z[2]
+    dz[2] = -sin(z[1]) + u
     end
 
     z0 = z_val
     prob = ODEProblem(pendulum!, z0, (0.0, 2.0))
-    sol = solve(prob, Tsit5(), dt=dt)
+    sol = solve(prob, Tsit5(), saveat = t)
 
-    y_true = h.(sol.(t))
+    y_true = sol[1, :]
 
 Comparison plot
 -------------------
@@ -349,8 +345,8 @@ Comparison plot
 
     using Plots
 
-    plot(t, y_true, label="True pendulum output", lw=2)
-    plot!(t, Fc, label="Chen–Fliess (N = $Ntrunc)", lw=2)
+    plot(t, y_cf, label="Chen–Fliess (N = $Ntrunc)", lw=2)
+    plot!(t, y_true, label="True pendulum output", lw=2)
     xlabel!("t")
     ylabel!("θ(t)")
     title!("Pendulum: Chen–Fliess approximation vs ODE solution")
@@ -361,11 +357,24 @@ Error analysis
 .. code-block:: julia
     :linenos:
 
-    err = abs.(y_true .- Fc)
+    err = abs.(y_true - y_cf)
     plot(t, err, label="|y_true - F_c|", lw=2)
     xlabel!("t")
     ylabel!("Error")
     title!("Approximation error")
+
+
+.. image:: _static/examples/Chen-Fliess-series_pendulum.png
+   :alt: Chen–Fliess series pendulum example
+   :align: center
+   :width: 600px
+   :height: 300px
+
+.. image:: _static/examples/pendulum_errors.png
+   :alt: Chen–Fliess series pendulum example
+   :align: center
+   :width: 600px
+   :height: 300px
 
 Interpretation
 -------------------
@@ -376,7 +385,6 @@ The error increases with:
 
 - truncation depth,
 - input amplitude,
-- nonlinearity (large angles),
 - and time horizon.
 
 This example demonstrates how Chen–Fliess expansions capture nonlinear
