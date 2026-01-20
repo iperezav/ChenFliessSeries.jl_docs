@@ -33,7 +33,7 @@ Documentation
 .. raw:: html
 
     <div align="center" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-        <h2 style="font-weight: 600;">Fast, Recursive, and Symbolic Chen–Fliess Series in Julia</h2>
+        <h2 style="font-weight: 600;">Fast and Numerical Chen–Fliess Series in Julia</h2>
         <p style="font-size: 1.1rem; max-width: 650px; margin: auto;">
             A lightweight, high‑performance Julia package for computing iterated integrals,
             Lie derivatives, and truncated Chen–Fliess expansions for nonlinear control‑affine systems.
